@@ -46,8 +46,6 @@ testNum = 1
 
 # optimization
 
-# ① 启始位置随机
-
 
 orderInfo = pd.read_pickle('../data/order.pkl')
 
@@ -140,6 +138,7 @@ while dayIndex < maxDay:
             for k in range(1):
                 matchingState,state, action, reward,cost,nextState = replayBuffer.sample()
                 actorLoss,rewardCriticLoss,costCriticLoss = agent.update_theta(matchingState,state,action,reward,cost,nextState,updateRound,k)
+                agent.update_lagrange(matchingState, state, action, reward, cost, nextState, updateRound)
                 actorLossList.append(actorLoss)
                 rewardCriticLossList.append(rewardCriticLoss)
                 costCriticLossList.append(costCriticLoss)

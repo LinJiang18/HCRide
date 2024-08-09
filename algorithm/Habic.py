@@ -15,7 +15,7 @@ class PolicyNet(torch.nn.Module):
         self.A = torch.nn.Linear(self.actionDim,4)
         self.L1 = torch.nn.Linear(4+4,6)
         self.L2 = torch.nn.Linear(6,4)
-        self.f = torch.nn.Linear(4, 1)
+        self.f = torch.nn.Linear(4,1)
 
     def forward(self, X):
         s = X[:, :self.stateDim]
@@ -184,8 +184,8 @@ class Habic:
             costCriticLoss = torch.mean(F.mse_loss(self.costCritic(state), costTarget.detach()))
 
             if (update_k == 0) & (k == self.epochs - 1):
-                print(f'ActorLoss:{actorLoss.item()}')
-                print(f'CriticLoss:{rewardCriticLoss}')
+                # print(f'ActorLoss:{actorLoss.item()}')
+                # print(f'CriticLoss:{rewardCriticLoss}')
                 a,b,c = actorLoss.detach(), rewardCriticLoss.detach(),costCriticLoss.detach()
 
             self.actorOptimizer.zero_grad()
@@ -246,7 +246,6 @@ class Habic:
 
             L = JR - self.lagrange * (JC - self.limit)
             lagLoss = L
-            self.lagrange.grad.zero_()
             lagLoss.backward()
             self.lagrange.data = torch.max(self.lagrange.data -
                                            self.lagLr * self.lagrange.grad,torch.tensor(0,dtype=torch.float))

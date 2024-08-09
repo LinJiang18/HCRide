@@ -37,7 +37,7 @@ actionDim = 10
 actorLr = 0.001
 criticLr = 0.01
 lagLr = 1e-3
-limit = 1
+limit = 0.15
 lagrange = 1
 epochs = 5
 eps = 0.2
@@ -97,8 +97,6 @@ while dayIndex < maxDay:
             candidateList = env.generate_candidate_set(order, driverList)
             driverStateArray = env.driver_state_calculate(candidateList)  #
             actionStateArray = env.action_state_calculate(candidateList, order)  #
-            # contextualArray = env.con_state_calcualte() # 200
-            # stateArray = np.hstack((driverStateArray,contextualArray.reshape(1,-1).repeat(driverStateArray.shape[0], 0)))
 
             stateArray = driverStateArray
             matchingStateArray = np.hstack((stateArray, actionStateArray))  #
@@ -136,16 +134,6 @@ while dayIndex < maxDay:
         env.step(dDict, replayBuffer)
         T += 1
 
-        # if (T % 20) == 0 and dayIndex >= 1:
-        #     updateRound += 1
-        #     for k in range(1):
-        #         matchingState,state, action, reward,cost,nextState = replayBuffer.sample()
-        #         agent.update_theta(matchingState,state,action,reward,cost,nextState,updateRound,k)
-        # if T == maxTime - 1 and dayIndex % 10 == 0 and dayIndex > 0:
-        #     updateRound += 1
-        #     for _ in range(10):
-        #         matchingState, state, action, reward, cost, nextState = replayBuffer.sample()
-        #         agent.update_lagrange(matchingState, state, action, reward, cost, nextState, updateRound)
 
     regionDaywt = []
     regionDayVarwt = []
@@ -179,13 +167,6 @@ while dayIndex < maxDay:
 
     dayIndex += 1
 
-# for region in env.regionList:
-#     wholewtList.append(region.accwt)
-#     wholeorderList.append(region.accOrder)
-# regionMeanwt = [x/y if y!= 0 else 0 for x,y in zip(wholewtList, wholeorderList)]
-# regionMeanLoc = '../data/regionMeanWT(1).pkl'
-# with open(regionMeanLoc,'wb') as f:
-#     pickle.dump(regionMeanwt, f)
 
 
 print(f"whole mean reward: {statistics.mean(wholeRewardList)}")
@@ -201,9 +182,9 @@ for region in env.regionList:
     regionOrder.append(region.accOrder)
     regionIntraFairness.append(np.var(np.array(region.accwtList)))
 regionMeanwt = [x/y if y != 0 else 0 for x,y in zip(regionwt, regionOrder)]
-wtLoc = f'../KDDResult/Convergence/Executing Process/Test{testNum}/global_region_wt.pkl'
-fairnessLoc = f'../KDDResult/Convergence/Executing Process/Test{testNum}/region_Intra_Fairness.pkl'
-individualwtLoc =  f'../KDDResult/Convergence/Executing Process/Test{testNum}/individual_wt_list.pkl'
+wtLoc = f'../result/Test{testNum}/global_region_wt.pkl'
+fairnessLoc = f'../result/Test{testNum}/region_Intra_Fairness.pkl'
+individualwtLoc =  f'../result/Test{testNum}/individual_wt_list.pkl'
 with open(wtLoc, 'wb') as f:
     pickle.dump(regionMeanwt, f)
 with open(fairnessLoc,'wb') as f:
