@@ -354,7 +354,7 @@ class Env(object):
 
         plt.figure(figsize=(12, 9))
         x = range(1, len(y2) + 1)
-        plt.xlim((0, 450))
+        plt.xlim((0, 400))
         plt.ylim((-5, 16))
         plt.plot(x, y2, linewidth=3)
         x1 = np.linspace(-10, 450, 1000)
@@ -374,7 +374,7 @@ class Env(object):
         plt.plot(x1, y1, color='r', linestyle='--', linewidth=3)
         x1 = np.linspace(-10, 450, 1000)
         y1 = np.zeros_like(x1)
-        plt.xlim((-10, 450))
+        plt.xlim((-10, 400))
         plt.ylim((-50, 1300))
         plt.xlabel('Update Iteration', fontsize=50)
         plt.ylabel('Critic Loss', fontsize=50)
