@@ -1,2 +1,7 @@
-This is the code for paper HCRide.
-The code can be run directly by executing "run.py"
+# HCRide
+
+## Run Procedure
+```bash
+cd /path/to/your/project
+python run.py
+
