@@ -3,13 +3,12 @@
 **HCRide: Harmonizing Passenger Fairness and Driver Preference for Human-Centered Ride-Hailing**  
 Code and data for the IJCAI-25 paper by Lin Jiang, Yu Yang, and Guang Wang.
 
----
+
 
 ## 📌 Overview
 
 HCRide is a two-layer decision framework designed to optimize ride-hailing services by balancing passenger fairness and driver preference. This repository includes the full pipeline: dispatch algorithms, simulation environment, and experiment scripts.
 
----
 
 ## 📁 Project Structure
 
@@ -22,7 +21,6 @@ HCRide is a two-layer decision framework designed to optimize ride-hailing servi
 └── README.md        # Project documentation
 ```
 
----
 
 ## 🚀 Getting Started
 
@@ -46,7 +44,6 @@ cd run
 python run.py
 ```
 
----
 
 ## 🧪 Running Tests
 
@@ -58,7 +55,6 @@ python test/evaluate_dispatch.py
 
 Results will be saved to the `result/` folder.
 
----
 
 ## 📖 Citation
 
@@ -72,8 +68,6 @@ If you use this code or dataset, please cite the following paper:
   year={2025}
 }
 ```
-
----
 
 
 *This project is part of the IJCAI-25 Special Track on Human-Centered Artificial Intelligence.*
