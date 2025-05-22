@@ -1,9 +1,15 @@
 
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+
 from simulator.envs import *
 from algorithm.Habic import *
 from algorithm.AC import *
-import pickle
 
+
+import pickle
 def set_seed(seed):
     torch.manual_seed(seed)
     np.random.seed(seed)
@@ -47,10 +53,10 @@ testNum = 1
 # optimization
 
 
-orderInfo = pd.read_pickle('../data/order.pkl')
+orderInfo = pd.read_pickle('data/order.pkl')
 
-driverPreInit = pd.read_pickle('../data/driver_preference.pkl')
-driverLocInit = pd.read_pickle('../data/driver_location.pkl')
+driverPreInit = pd.read_pickle('data/driver_preference.pkl')
+driverLocInit = pd.read_pickle('data/driver_location.pkl')
 
 DN = 150
 
@@ -177,6 +183,6 @@ while dayIndex < maxDay:
 
 
 
-torch.save(agent,f'../result/Test{testNum}/agent.pth')
+torch.save(agent,f'result/Test{testNum}/agent.pth')
 
 env.plot(rewardList,actorLossList,rewardCriticLossList)

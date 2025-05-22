@@ -27,6 +27,7 @@ HCRide is a two-layer decision framework designed to optimize ride-hailing servi
 ### 1. Clone the Repository
 
 ```bash
+conda create --name HCRide python=3.7
 git clone https://github.com/your-org/HCRide.git
 cd HCRide
 ```
@@ -34,14 +35,14 @@ cd HCRide
 ### 2. Install Dependencies
 
 ```bash
-pip install -r requirements.txt
+conda activate HCRide
+pip install -r requirement.txt
 ```
 
 ### 3. Run the Main Pipeline
 
 ```bash
-cd run
-python run.py
+python run/run.py
 ```
 
 

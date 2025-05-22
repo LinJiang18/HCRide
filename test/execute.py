@@ -53,17 +53,17 @@ testNum = 1
 # ① 启始位置随机
 
 
-orderInfo = pd.read_pickle('../data/order.pkl')
+orderInfo = pd.read_pickle('data/order.pkl')
 
-driverPreInit = pd.read_pickle('../data/driver_preference.pkl')
-driverLocInit = pd.read_pickle('../data/driver_location.pkl')
+driverPreInit = pd.read_pickle('data/driver_preference.pkl')
+driverLocInit = pd.read_pickle('data/driver_location.pkl')
 # regionWT = pd.read_pickle('../data/regionMeanWT.pkl')
 
 driverNum = 150
 
 env = Env(driverPreInit, driverLocInit, orderInfo, locRange, driverNum, M, N, maxDay, maxTime)
 
-agent = torch.load(f'../result/Test1/agent.pth')
+agent = torch.load(f'result/Test1/agent.pth')
 replayBuffer = ReplayBuffer(memorySize, batchSize)
 
 env.set_driver_info(driverPreInit, driverLocInit)
@@ -182,9 +182,9 @@ for region in env.regionList:
     regionOrder.append(region.accOrder)
     regionIntraFairness.append(np.var(np.array(region.accwtList)))
 regionMeanwt = [x/y if y != 0 else 0 for x,y in zip(regionwt, regionOrder)]
-wtLoc = f'../result/Test{testNum}/global_region_wt.pkl'
-fairnessLoc = f'../result/Test{testNum}/region_Intra_Fairness.pkl'
-individualwtLoc =  f'../result/Test{testNum}/individual_wt_list.pkl'
+wtLoc = f'result/Test{testNum}/global_region_wt.pkl'
+fairnessLoc = f'result/Test{testNum}/region_Intra_Fairness.pkl'
+individualwtLoc =  f'result/Test{testNum}/individual_wt_list.pkl'
 with open(wtLoc, 'wb') as f:
     pickle.dump(regionMeanwt, f)
 with open(fairnessLoc,'wb') as f:
