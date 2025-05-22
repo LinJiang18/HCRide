@@ -337,7 +337,7 @@ class Env(object):
 
 
 
-    def plot(self,y1,y2,y3):
+    def plot(self,y1,y2,y3,testNum):
 
 
         plt.figure(figsize=(12, 9))
@@ -350,6 +350,7 @@ class Env(object):
         plt.yticks(fontsize=40)
         plt.grid()
         plt.tight_layout()
+        plt.savefig(f'result/Test{testNum}/reward.png',dpi=300, bbox_inches='tight')
         plt.show()
 
         plt.figure(figsize=(12, 9))
@@ -366,6 +367,7 @@ class Env(object):
         plt.yticks([0, 2, 4, 6, 8, 10, 12, 14, 16],fontsize=40)
         plt.grid()
         plt.tight_layout()
+        plt.savefig(f'result/Test{testNum}/Actor Loss.png',dpi=300, bbox_inches='tight')
         plt.show()
 
         plt.figure(figsize=(12, 9))
@@ -382,6 +384,7 @@ class Env(object):
         plt.yticks([0, 200, 400, 600,  800, 1000, 1200], fontsize=40)
         plt.grid()
         plt.tight_layout()
+        plt.savefig(f'result/Test{testNum}/Critic Loss.png',dpi=300, bbox_inches='tight')
         plt.show()
 
 

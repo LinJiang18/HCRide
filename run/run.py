@@ -185,4 +185,4 @@ while dayIndex < maxDay:
 
 torch.save(agent,f'result/Test{testNum}/agent.pth')
 
-env.plot(rewardList,actorLossList,rewardCriticLossList)
+env.plot(rewardList,actorLossList,rewardCriticLossList,testNum)
