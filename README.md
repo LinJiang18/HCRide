@@ -44,14 +44,14 @@ pip install -r requirement.txt
 ```bash
 python run/run.py
 ```
-
+The trained agent will be saved in the `result/` directory.
 
 ## 🧪 Running Tests
 
 You can run the evaluation script via:
 
 ```bash
-python test/evaluate_dispatch.py
+python test/execute.py
 ```
 
 Results will be saved to the `result/` folder.
